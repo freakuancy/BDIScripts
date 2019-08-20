@@ -34,10 +34,16 @@ bind pubm - "% % !wiki*" spidey:wiki_link2
 
 proc spidey:wiki_link { nick host hand chan text } {
 
-	# Turn spaces into underscores
-	set article [string map {" " _} $text]
-	# Make sure article name starts with upper case letter
-	set article [string toupper [string index $article 0]][string range $article 1 end]
+             foreach word $text {
+                if {[string equal $word "of"] || [string equal $word "and"] || [string equal $word "the"] || [string equal $word "a"] || [string equal $word "is"]} {
+                        set s $word
+                        }  else {
+                        set s [string toupper $word 0 0]
+                }
+                append out "$s "
+        }
+        set processed [string toupper $out 0 0]   
+        set article [string map {" " _} [string trim $processed]]
 
 	# If no article is entered...
 	if { $article == "" } {
@@ -53,10 +59,17 @@ proc spidey:wiki_link2 { nick host hand chan text } {
 		set data [join [lrange [split $text] 2 end]]
 		set discreq [string range [lindex $text 0] 1 end-1]
 		# Turn spaces into underscores
-        	set article [string map {" " _} $data]
         	# Make sure article name starts with upper case letter
-        	set article [string toupper [string index $article 0]][string range $article 1 end]
-
+		foreach word $data {
+		if {[string equal $word "of"] || [string equal $word "and"] || [string equal $word "the"] || [string equal $word "a"] || [string equal $word "is"]} {
+   			set s $word
+   			}  else {
+     			set s [string toupper $word 0 0]
+   		}
+		append out "$s "
+	}
+	set processed [string toupper $out 0 0]
+	set article [string map {" " _} [string trim $processed]]
         	# If no article is entered...
         	if { $article == "" } {
                 	# Make it the main page article
