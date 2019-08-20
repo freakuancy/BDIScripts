@@ -29,10 +29,12 @@
 #
 #========================================================================
 
+# Name of Discord<->IRC Bridge Bot
+set discbot "DiscordBOT"
+
 # Calls the script when people say !wiki at the start of the line.
 # Changes this to whatever you want to make the script call on other
 #  keywords.
-set discbot "DiscordBOT"
 
 bind pub - "!wiki" spidey:wiki_link
 bind pubm - "% % !wiki*" spidey:wiki_link2
