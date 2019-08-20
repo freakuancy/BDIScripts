@@ -16,10 +16,15 @@
 #         Article_Name
 #      in the link
 #    * Changes first letter of the article to upper case. Example:
-#         article
+#         article	
 #      will become
 #         Article
 #      in the link
+#	EDIT: Now converts to proper Title Case, uppercasing the first letter of all words except 
+#			is, and, of, the and a.
+#
+#    * Works over Discord<->IRC Bridge	
+#
 #    * Mentions which nickname requested the link to prevent confusion.
 #
 #========================================================================
